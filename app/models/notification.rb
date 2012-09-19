@@ -5,7 +5,7 @@ class Notification < ActiveRecord::Base
   belongs_to :sender, :polymorphic => :true
   belongs_to :notified_object, :polymorphic => :true
   validates_presence_of :subject
-  validates :body, :conversation => {:message => "In the message text you entered personal information. If you wish to conduct private conversation, go to private messages."
+  validates :body, :conversation => {:message => "In the message text you entered personal information."
 }, :presence => true
   has_many :receipts, :dependent => :destroy
 
