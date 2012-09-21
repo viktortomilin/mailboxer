@@ -5,8 +5,7 @@ class Notification < ActiveRecord::Base
   belongs_to :sender, :polymorphic => :true
   belongs_to :notified_object, :polymorphic => :true
   validates_presence_of :subject
-  validates :body, :conversation => {:message => "In the message text you entered personal information."
-}, :presence => true
+  validates :body, :conversation => {:message => "This messages contains personal information like a phone number or email, that is not permitted in SidelineSwap's messaging service. Please remove the personal information so that you can send the message."}, :presence => true
   has_many :receipts, :dependent => :destroy
 
   scope :recipient, lambda { |recipient|
