@@ -10,7 +10,7 @@ class Conversation < ActiveRecord::Base
   attr_accessible :subject
   attr_accessible :sender_id, :receipt_id, :last_notification_id
 	
-  before_validation :clean
+  #before_validation :clean
   
   scope :for_user, lambda {|user|
     where('conversations.receipt_id = ? OR conversations.sender_id = ?', user.id, user.id)
