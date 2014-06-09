@@ -1,12 +1,13 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :subject, :sender_id, :receipt_id, :last_notification_id
-
+  
   has_many :messages, :dependent => :destroy
   has_many :receipts, :through => :messages
   
   belongs_to :receipt, class_name: 'User'
   belongs_to :sender, class_name: 'User'
   belongs_to :last_notification, class_name: 'Notification'
+  
+  attr_accessible :subject, :sender_id, :receipt_id, :last_notification_id
 	
   before_validation :clean
   
