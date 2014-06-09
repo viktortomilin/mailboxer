@@ -1,12 +1,14 @@
 class Conversation < ActiveRecord::Base
   attr_accessible :subject
 
-	has_many :messages, :dependent => :destroy
-	has_many :receipts, :through => :messages
-
-	validates_presence_of :subject
-
-	before_validation :clean
+  has_many :messages, :dependent => :destroy
+  has_many :receipts, :through => :messages
+  
+  belongs_to :receipt, class_name: 'User'
+  belongs_to :sender, class_name: 'User'
+  belongs_to :last_notification, class_name: 'Notification'
+	
+  before_validation :clean
 
   scope :participant, lambda {|participant|
     select('DISTINCT conversations.*').
