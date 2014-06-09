@@ -9,6 +9,10 @@ class Conversation < ActiveRecord::Base
   belongs_to :last_notification, class_name: 'Notification'
 	
   before_validation :clean
+  
+  scope :for_user, lambda {|user|
+    where('conversations.receipt_id = ? OR conversations.sender_id = ?', user.id, user.id)
+  }
 
   scope :participant, lambda {|participant|
     select('DISTINCT conversations.*').
