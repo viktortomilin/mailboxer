@@ -2,7 +2,7 @@ class Notification < ActiveRecord::Base
   attr_accessor :recipients
   attr_accessible :body, :subject
 
-  belongs_to :sender, :polymorphic => :true
+  belongs_to :sender, class_name: 'User'
   belongs_to :notified_object, :polymorphic => :true
   validates :subject, :conversation => {:message => "This subject contains personal information like a phone number or email, that is not permitted in SidelineSwap's messaging service. Please remove the personal information so that you can send the message."}, :presence => true
   validates :body, :conversation => {:message => "This messages contains personal information like a phone number or email, that is not permitted in SidelineSwap's messaging service. Please remove the personal information so that you can send the message."}, :presence => true
