@@ -8,7 +8,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :last_notification, class_name: 'Notification'
   
   attr_accessible :subject
-  attr_accessible :sender_id, :receipt_id, :last_notification_id
+  attr_accessible :sender_id, :receipt_id, :last_notification_id, :sender_unread_counter, :recipient_unread_counter
 	
   #before_validation :clean
   
