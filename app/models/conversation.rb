@@ -1,8 +1,11 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :subject
+        attr_accessible :subject, :room_id, :item_id
 
 	has_many :messages, :dependent => :destroy
 	has_many :receipts, :through => :messages
+	
+	belongs_to :room
+	belongs_to :item
 
 	validates_presence_of :subject
 
