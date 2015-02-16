@@ -3,12 +3,16 @@ class Conversation < ActiveRecord::Base
   has_many :messages, :dependent => :destroy
   has_many :receipts, :through => :messages
   
+  belongs_to :room
+  belongs_to :item
+  
   belongs_to :receipt, class_name: 'User'
   belongs_to :sender, class_name: 'User'
   belongs_to :last_notification, class_name: 'Notification'
   
   attr_accessible :subject
   attr_accessible :sender_id, :receipt_id, :last_notification_id, :sender_unread_counter, :recipient_unread_counter
+  attr_accessible :room_id, :item_id
 	
   #before_validation :clean
   
